@@ -1,54 +1,71 @@
 import { ScrollView, StyleSheet, Text, View, Image } from "react-native"
 import MyTextInput from "../components/TextInput"
 import Icon from "react-native-vector-icons/FontAwesome"
-import { useNavigation } from "@react-navigation/native"
-import { useState } from "react"
+import { useNavigation, useRoute } from "@react-navigation/native"
+import { useState, useEffect } from "react"
 import { CheckBox } from "react-native"
 import MyDropdown from "../components/Dropdown"
 
-const data = [
-  {
-    title: "Study - Golang",
-    description:
-      "Learn Golang to improve fundamentals and familiarize with coding",
-    date: new Date(),
-    backgroundColor: "#DAEFFF",
-    category: "Study",
-    color: "#81C8FF",
-  },
-  {
-    title: "Home Work - Mathematics",
-    description: "Do homework math probability",
-    date: new Date(),
-    backgroundColor: "#F1FFEF",
-    category: "Home Work",
-    color: "#FF8181",
-  },
-  {
-    title: "Study - HTML",
-    description:
-      "Learn HTML to improve fundamentals and familiarize with coding",
-    date: new Date(),
-    backgroundColor: "#FFEFEF",
-    category: "Study",
-    color: "#81C8FF",
-  },
-  {
-    title: "Study - Javascript",
-    description:
-      "Learn HTML to improve fundamentals and familiarize with coding",
-    date: new Date(),
-    backgroundColor: "#FEFFDA",
-    category: "Study",
-    color: "#81C8FF",
-  },
-]
-
 const ListTodo = () => {
   const navigation = useNavigation()
+  const route = useRoute()
   const [selectedItems, setSelectedItems] = useState([])
   const [searchText, setSearchText] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("") // Tambahkan state kategori terpilih
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [data, setData] = useState([
+    {
+      title: "Study - Golang",
+      description:
+        "Learn Golang to improve fundamentals and familiarize with coding",
+      date: new Date(),
+      backgroundColor: "#DAEFFF",
+      category: "Study",
+      color: "#81C8FF",
+    },
+    {
+      title: "Study - Golang",
+      description:
+        "Learn Golang to improve fundamentals and familiarize with coding",
+      date: new Date(),
+      backgroundColor: "#DAEFFF",
+      category: "Study",
+      color: "#81C8FF",
+    },
+    {
+      title: "Home Work - Mathematics",
+      description: "Do homework math probability",
+      date: new Date(),
+      backgroundColor: "#F1FFEF",
+      category: "Home Work",
+      color: "#FF8181",
+    },
+    {
+      title: "Study - HTML",
+      description:
+        "Learn HTML to improve fundamentals and familiarize with coding",
+      date: new Date(),
+      backgroundColor: "#FFEFEF",
+      category: "Study",
+      color: "#81C8FF",
+    },
+    {
+      title: "Study - Javascript",
+      description:
+        "Learn HTML to improve fundamentals and familiarize with coding",
+      date: new Date(),
+      backgroundColor: "#FEFFDA",
+      category: "Study",
+      color: "#81C8FF",
+    },
+  ])
+
+  useEffect(() => {
+    // Tangkap data baru dari AddList
+    const newData = route.params?.newData
+    if (newData) {
+      setData((prevData) => [...prevData, newData])
+    }
+  }, [route.params?.newData])
 
   const navigateToDetail = () => {
     navigation.navigate("Detail")
@@ -126,7 +143,9 @@ const ListTodo = () => {
                 padding: 12,
                 borderRadius: 8,
                 elevation: 4,
-                backgroundColor: item.backgroundColor,
+                border: 10,
+                borderColor: "black",
+                backgroundColor: "#FBECB2",
               }}
             >
               <Text
@@ -134,9 +153,10 @@ const ListTodo = () => {
                   position: "absolute",
                   top: 10,
                   right: 20,
-                  backgroundColor: item.color,
+                  backgroundColor: "#9EDDFF",
                   color: "#fff",
-                  paddingHorizontal: 12,
+                  // marginLeft:10,
+                  paddingLeft: 17,
                   justifyContent: "center",
                   paddingVertical: 4,
                   borderRadius: 5,

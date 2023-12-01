@@ -1,12 +1,17 @@
 import React from "react"
 import Routes from "./src/routes/routes"
 import { NavigationContainer } from "@react-navigation/native"
+import { UserProvider } from "./src/lib/UserContext"
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <>
+      <UserProvider>
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
+      </UserProvider>
+    </>
   )
 }
 

@@ -13,7 +13,10 @@ const MyTextInput = (props) => {
         paddingHorizontal: 15,
         paddingVertical: 15,
         marginTop: 20,
-        elevation: 5,
+        height: props.height,
+        numberOfLines: props.numberOfLines,
+        borderColor: "#dedede",
+        borderWidth: 1,
       }}
     ></TextInput>
   )

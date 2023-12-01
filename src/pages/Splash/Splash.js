@@ -12,6 +12,7 @@ const Splash = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image source={logo_kpu} style={styles.logo}></Image>
+      <Text style={{ fontWeight:"bold", fontSize:40, marginTop:20, color:"red" }}>CAPE UYY</Text>
     </View>
   )
 }
